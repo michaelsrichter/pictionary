@@ -13,18 +13,26 @@ namespace dx.pictionary.app.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult Game(int id)
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
+            return
+                View(new GameViewModel
+                {
+                    GameId = "Game " + id,
+                    ProductFeature = new ProductFeature {Category = "PAAS", Name = "DocumentDb"}
+                });
         }
+    }
 
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
+    public class ProductFeature
+    {
+        public string Name { get; set; }
+        public string Category { get; set; }
+    }
 
-            return View();
-        }
+    public class GameViewModel
+    {
+        public ProductFeature ProductFeature { get; set; }
+        public string GameId { get; set; }
     }
 }
