@@ -1,11 +1,11 @@
 ﻿@model dx.pictionary.app.Controllers.GameViewModel
 
 @{
-    ViewBag.Title = @Model.GameId;
+    ViewBag.Title = @Model.Title;
 }
 <div class="row">
     <div class="col-lg-12">
-        <h2>@Model.GameId</h2>
+        <h2>@Model.Title</h2>
     </div>
 </div>
 
@@ -14,10 +14,10 @@
 
         <div class="panel panel-success">
             <div class="panel-heading">
-                <h3 class="panel-title">@Model.ProductFeature.Category</h3>
+                <h3 class="panel-title">@Model.Keyword.Category</h3>
             </div>
             <div class="panel-body">
-                @Model.ProductFeature.Name
+                <h4><strong>@Model.Keyword.RowKey</strong></h4>
             </div>
         </div>
     </div>
@@ -36,8 +36,19 @@
     &nbsp;
 </div>
 <div class="row form-horizontal">
-        <div class="col-lg-12">
-            <div class="your-clock"></div>
-        </div>
+    <div class="col-lg-12">
+        <div class="your-clock"></div>
     </div>
-
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <ul class="pager">
+            @{
+                var prevClass = Model.Index <= 0 ? "previous disabled" : "previous";
+                var nextClass = Model.Index >= 19 ? "next disabled" : "next";
+            }
+            <li class="@prevClass">@Html.ActionLink("LAST", "Game", "Home", new { id = Model.GameId, @index = Model.Index - 1 }, null)</li>
+            <li class="@nextClass">@Html.ActionLink("NEXT", "Game", "Home", new { id = Model.GameId, @index = Model.Index + 1 }, null)</li>
+        </ul>
+    </div>
+</div>
