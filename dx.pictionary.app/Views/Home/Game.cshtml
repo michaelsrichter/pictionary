@@ -12,7 +12,7 @@
 <div class="row">
     <div class="col-lg-12">
 
-        <div class="panel panel-success">
+        <div class="@Model.CategoryStyle">
             <div class="panel-heading">
                 <h3 class="panel-title">@Model.Keyword.Category</h3>
             </div>
@@ -47,8 +47,16 @@
                 var prevClass = Model.Index <= 0 ? "previous disabled" : "previous";
                 var nextClass = Model.Index >= 19 ? "next disabled" : "next";
             }
-            <li class="@prevClass">@Html.ActionLink("LAST", "Game", "Home", new { id = Model.GameId, @index = Model.Index - 1 }, null)</li>
-            <li class="@nextClass">@Html.ActionLink("NEXT", "Game", "Home", new { id = Model.GameId, @index = Model.Index + 1 }, null)</li>
+            <li class="@prevClass">@Html.ActionLink("LAST", "Game", "Home", new {id = Model.GameId, @index = Model.Index - 1}, null)</li>
+            <li class="@nextClass">@Html.ActionLink("NEXT", "Game", "Home", new {id = Model.GameId, @index = Model.Index + 1}, null)</li>
         </ul>
+    </div>
+</div>
+
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <a href="/home/index" class="btn btn-default btn-lg btn-block">Exit Game</a>
     </div>
 </div>

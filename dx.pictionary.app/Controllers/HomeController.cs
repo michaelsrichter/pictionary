@@ -30,24 +30,27 @@ namespace dx.pictionary.app.Controllers
         {
             var cookie = new HttpCookie(cookieId);
             var items = RetrieveKeywords(cookieId);
-            cookie.Value = JsonConvert.SerializeObject(items, Formatting.None);
+            var rnd = new Random();
+            var randomItems = items.OrderBy(x => rnd.Next()).ToArray();
+            cookie.Value = JsonConvert.SerializeObject(randomItems, Formatting.None);
             cookie.Expires = DateTime.Now.AddHours(3);
             ControllerContext.HttpContext.Response.Cookies.Add(cookie);
         }
 
-        internal static Keyword[] GetKeywords()
+        internal static string GetCategoryStyle(string category)
         {
-            var items = new[]
+            switch (category)
             {
-                new Keyword() {PartitionKey = "Game1", Category = "MISC", RowKey = "Azure AD B2C"},
-                new Keyword() {PartitionKey = "Game1", Category = "DP", RowKey = "SQL Insert"},
-                new Keyword() {PartitionKey = "Game1", Category = "PAAS", RowKey = "DocumentDb"},
-                new Keyword() {PartitionKey = "Game1", Category = "IAAS", RowKey = "VMs"},
-                new Keyword() {PartitionKey = "Game1", Category = "MISC", RowKey = "Azure AD B2C"},
-                new Keyword() {PartitionKey = "Game1", Category = "DP", RowKey = "SQL Insert"},
-                new Keyword() {PartitionKey = "Game1", Category = "PAAS", RowKey = "DocumentDb"}
-            };
-            return items;
+                case "PAAS":
+                    return "panel panel-success";
+                case "IAAS":
+                    return "panel panel-warning";
+                case "DP":
+                    return "panel panel-info";
+                case "MISC":
+                default:
+                    return "panel panel-primary";
+            }
         }
 
         internal static IEnumerable<Keyword> RetrieveKeywords(string partitionKey)
@@ -60,26 +63,34 @@ namespace dx.pictionary.app.Controllers
         }
 
         public ActionResult Game(int id, int index)
-        {
+        { 
             var fixedIndex = index;
             if (fixedIndex < 0) fixedIndex = 0;
             if (fixedIndex > 19) fixedIndex = 0;
             var cookieId = "Game" + id;
             Keyword item = null;
             var gameCookie = this.ControllerContext.HttpContext.Request.Cookies[cookieId];
-            if (gameCookie != null)
+            if (gameCookie == null)
             {
-                var items = JsonConvert.DeserializeObject<Keyword[]>(gameCookie.Value);
-                item = items[fixedIndex];
+                return RedirectToAction("Index");
             }
 
+
+            var items = JsonConvert.DeserializeObject<Keyword[]>(gameCookie.Value);
+            item = items[fixedIndex];
+
+            if (item == null)
+            {
+                throw new Exception("Keyword not found");
+            }
             return
                 View(new GameViewModel
                 {
                     GameId = id,
-                    Title =  "Game " + id,
+                    Title = "Game " + id,
                     Index = fixedIndex,
-                    Keyword = item
+                    Keyword = item,
+                    CategoryStyle = GetCategoryStyle(item.Category)
                 });
         }
     }
@@ -96,6 +107,6 @@ namespace dx.pictionary.app.Controllers
         public int GameId { get; set; }
         public string Title { get; set; }
         public int Index { get; set; }
-       
+        public string CategoryStyle { get; set; }
     }
 }
