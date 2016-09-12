@@ -22,7 +22,78 @@
 <body>
     <div class="container body-content">
         @RenderBody()
-        <hr />
+        <hr/>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="well">
+
+                    <h4>House Rules</h4>
+                    <ul>
+                        <li>
+                            Each table with have a Proctor to keep time, keep score, referee and make third party judgement calls
+                        </li>
+                        <li>
+                            Scenario topics are defined one-level down from a core product feature
+                            <ul>
+                                <li>
+                                    Ie., Web App Auto-scale vs Web App
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            Each table is divided into two teams of players
+                        </li>
+                        <li>
+                            The drawing player rotates through each team player for each round
+                        </li>
+                        <li>
+                            For each round:
+                            <ul>
+                                <li>
+                                    A scenario card is selected at random
+                                </li>
+                                <li>
+                                    The drawing player from each team concurrently draw the scenario
+                                </li>
+                                <li>
+                                    Drawing player is permitted 1-minute to draw the scenario while other players on their team guess the full name of the scenario
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            Each game is 15-mins in duration
+                            <ul>
+                                <li>
+                                    Team with highest # of accumulated points at end of each game wins that game
+                                </li>
+                                <li>
+                                    At the end of each 15-min game, one team from each table rotates to another table
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            Passing / Vetoes
+                            <ul>
+                                <li>
+                                    <strong>Not allowed</strong>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            Writing words, letters, numbers
+                            <ul>
+                                <li>
+                                    Drawing players may ONLY write or draw words, letters or numbers that other players on their team have first guessed and that are part of the overall scenario name on the currently selected card.
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <hr/>
         <footer>
             <p>&copy; @DateTime.Now.Year - US DX ISV Cloud Pictionary</p>
         </footer>

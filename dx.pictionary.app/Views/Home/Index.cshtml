@@ -2,12 +2,29 @@
     ViewBag.Title = "Cloud Pictionary";
 }
 
+<div class="row">
+    <div class="col-lg-12">
+        <div class="control-group">
+            <h2>Welcome to US DX ISV Cloud Pictionary!</h2>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <ul>
+            <li>You should only be visiting this site if you are a proctor or referee.</li>
+            <li>There will be six games in total. Make sure you click through below to the appropriate game.
+                Each game has 20 possible clues. The games are 15 minutes long, or until all 20 clues have been (whatever comes first).</li>
+            <li>It's important that the games are played in sequence otherwise teams may already have seen the clues when switching tables.</li>
+        <li>During a game, all tables will be seeing the same clues, but each device gets the clues in a random order.</li>
+        <li>More house rules below.</li>
+</div>
 @for (int i = 1; i < 7; i++)
-{
+            {
     <div class="row">
         <div class="col-lg-12">
             <div class="control-group">
-                @Html.ActionLink("Game " + i, "Game", "Home", new {id = i, index=0}, new {@class = "btn btn-default btn-lg btn-block"})
+                @Html.ActionLink("Game " + i, "Game", "Home", new { id = i, index = 0 }, new { @class = "btn btn-default btn-lg btn-block" })
             </div>
         </div>
     </div>
