@@ -190,7 +190,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Properties\PublishProfiles\pictionaryapp.pubxml" />
+    <None Include="Properties\PublishProfiles\pictionaryapp - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\flipclock\flipclock.css" />
     <Content Include="Scripts\flipclock\flipclock.js" />
